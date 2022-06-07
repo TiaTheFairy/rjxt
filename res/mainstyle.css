@@ -1,0 +1,232 @@
+.tab_selector {
+  margin-top: 20px;
+  margin-left: 10px;
+  height: 30px;
+}
+
+.tab_selector .tab_selector_selected {
+  display: inline-block;
+  color: rgb(69, 92, 221);
+  cursor: pointer;
+  font-size: large;
+  font-weight: bold;
+  margin-inline: 10px;
+}
+
+.tab_selector .tab_selector_unselected {
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: medium;
+  margin-inline: 10px;
+}
+
+.tab_selector .tab_selector_unselected:hover {
+  color: rgb(41, 212, 55);
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.tab_selector .tab_selector_resize {
+  float: right;
+  font-weight: bolder;
+  margin-right: 10px;
+  cursor: pointer;
+  color: rgb(255, 0, 0);
+}
+
+.div_view .unity_viewer {
+  margin-top: 15px;
+}
+
+.div_view .unity_viewer .parts_color {
+  display: inline-block;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.div_view .unity_viewer .parts_color button {
+  background-color: rgb(255, 255, 255);
+  margin-inline: 5px;
+  margin-top: 5px;
+  border-radius: 15px;
+  width: 150px;
+  text-align: center;
+  color: #BBA985;
+  font-size: medium;
+  font-weight: bolder;
+  font-family: sans-serif;
+  padding: 6px;
+  position: relative;
+  cursor: pointer;
+}
+
+.div_view .float_hover {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(154, 158, 155, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.div_view .float_lists {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 0px;
+  height: 100%;
+  background-color: white;
+  z-index: 9999;
+  overflow: auto;
+}
+
+.div_view .float_lists .title {
+  font-size: 18px;
+  font-weight: bolder;
+  margin: 30px;
+}
+
+.div_view .float_lists .title img {
+  float: right;
+  width: 20px;
+  cursor: pointer;
+}
+
+.div_view .float_lists table {
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.div_view .float_lists table td,
+.div_view .float_lists table th {
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.div_view .float_lists table button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px black solid;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 70%;
+  height: 70%;
+}
+
+.div_view .float_lists .empty {
+  text-align: center;
+  margin-top: 40%;
+  font-size: 30px;
+  color: rgb(252, 6, 6);
+}
+
+.div_data .data_list .search {
+  margin: 30px;
+  height: 30px;
+  width: 250px;
+  border: 1px black solid;
+  border-radius: 10px;
+  padding-left: 5px;
+}
+
+.div_data .data_list .search input {
+  height: 100%;
+  padding: 0;
+  border: 0;
+}
+
+.div_data .data_list .search input:focus {
+  outline: none;
+  border: 0;
+}
+
+.div_data .data_list .search span {
+  height: 30px;
+  width: 30px;
+  background-color: rgb(201, 199, 199);
+  float: right;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.div_data .data_list .search span img {
+  width: 12px;
+  position: absolute;
+  top: 30%;
+  left: 30%
+}
+
+.div_data .data_list table {
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.div_data .data_list table td,
+.div_data .data_listtable table th {
+  padding: 10px 0;
+}
+
+.div_data .data_list table button {
+  width: 70%;
+  height: 70%;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px black solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.div_data .float_hover {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(154, 158, 155, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.div_data .popup {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  /* height: 500px; */
+  height: 0;
+  background-color: white;
+  z-index: 9999;
+}
+
+.div_data .popup .title {
+  margin: 15px;
+}
+
+.div_data .popup .title img {
+  float: right;
+  width: 20px;
+  cursor: pointer;
+}
+
+.div_data .popup .title p {
+  color: red;
+  background-color: green;
+  font-size: 36px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.div_data .popup #container {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+
+.div_data .popup .empty {
+  text-align: center;
+  margin-top: 10%;
+  font-size: 30px;
+  color: rgb(252, 6, 6);
+}
