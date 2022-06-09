@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv=“Content-Language” content=“zh_CN”>
+  <title> 软件系统分析实验 </title>
+
+  <link rel="stylesheet" type="text/css" href="./res/mainstyle.css">
+  <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+  <script src="https://gw.alipayobjects.com/os/lib/antv/g2/3.4.10/dist/g2.min.js"></script>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="./res/data_request.js"></script>
+  <script type="text/javascript" src="./res/mainjs.js"></script>
+</head>
+
+<body>
+
+  <div class="div_data">
+
+    <div class="tab_selector">
+      <div class="tab_selector_unselected" onclick="changetab('view')">
+        {{web_selector_view}}
+      </div>
+      <div class="tab_selector_selected" onclick="changetab('data')">
+        {{web_selector_data}}
+      </div>
+      <div class="tab_selector_resize" onclick="resizeWindow()">
+        {{web_selector_resize}}
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="data_list">
+      <div class="search">
+        <input id="search" type="text" :placeholder="data_search" @keyup.enter="searchData">
+        <span @click="searchData">
+          <img src="./res/images/search.png">
+        </span>
+      </div>
+
+      <div>
+        <table border="1">
+          <tr>
+            <th width="10%"> {{ data_table_indexer }}</th>
+            <th width="15%"> {{ data_table_system }} </th>
+            <th width="10%"> {{ data_table_type }} </th>
+            <th width="18%"> {{ data_table_id }} </th>
+            <th width="30%"> {{ data_table_name }} </th>
+            <th width="16%"> {{ data_table_next }} </th>
+          </tr>
+          <tr v-for="(item,index) in all_data_arr">
+            <td> {{ index + 1 }} </td>
+            <td> {{ item.system }} </td>
+            <td> {{ item.type }} </td>
+            <td> {{ item.id }} </td>
+            <td> {{ item.name }} </td>
+            <td>
+              <button @click="getButtonData"> {{ data_table_view }} </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="float_hover" v-show="ifShowData" @click="closeData">
+    </div>
+
+    <div class="popup" v-show="ifShowData">
+      <div class="title">
+        <span> {{ data_table_system + ':' }} </span>
+        <span> {{ all_data_arr[data_table_index].system + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' }} </span>
+        <span> {{ data_table_id + ':' }} </span>
+        <span> {{ all_data_arr[data_table_index].id + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' }} </span>
+        <span> {{ data_table_name + ':' }} </span>
+        <span> {{ all_data_arr[data_table_index].name + '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp' }} </span>
+        <img src="./res/images/close.png" @click="closeData"></img><br>
+      </div>
+
+      <div id="container" v-show="ifShowChart"></div>
+      <div class="empty" v-show="!ifShowChart">
+        <img src="./res/images/tip.png" width="40px">
+        <div> {{ data_table_empty }} </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./res/vue_data.js"></script>
+  <script type="text/javascript" src="./res/diagram.js"></script>
+
+</body>
+
+</html>
