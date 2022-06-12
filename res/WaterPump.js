@@ -104,7 +104,7 @@ function fun1 (materials) {
 
     document.getElementById('load').style.display = 'none';
   }
-  OBJLoader.load('./res/lib/lib2/WaterPump.obj', fun2);
+  OBJLoader.load('http://119.91.146.51:8080/WaterPump.obj', fun2);
   //'http://119.91.146.51:8080/WaterPump.obj'
 }
 MTLLoader.load('./res/lib/lib2/WaterPump.mtl', fun1);
