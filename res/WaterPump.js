@@ -7,14 +7,6 @@ function addScript () {
   }
 }
 
-// var file = requestFile();
-var file = 'https://files.catbox.moe/43nl93.obj'
-// var file = './res/lib/lib2/WaterPump.obj'
-
-if (file === '0') {
-  alert('模型文件加载失败!');
-}
-
 var scene = new THREE.Scene();
 let ifChangeColor = 0;
 var tmpObj;
@@ -112,7 +104,8 @@ function fun1 (materials) {
 
     document.getElementById('load').style.display = 'none';
   }
-  OBJLoader.load(file, fun2);
+  OBJLoader.load('./res/lib/lib2/WaterPump.obj', fun2);
+  //'http://119.91.146.51:8080/WaterPump.obj'
 }
 MTLLoader.load('./res/lib/lib2/WaterPump.mtl', fun1);
 

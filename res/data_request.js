@@ -10,7 +10,6 @@ function addScript () {
 url = ./viewList
 {id: '零件ID'}
 [{number: '测点位号', name: '被测参数名称}...]
-
 url = ./dataDiagram
 {name: '被测参数名称'}
 [{time: '时间', value:'检测值'}...]
@@ -25,6 +24,7 @@ request: '00'
 var serverAddress = 'http://119.91.146.51:8080';
 
 function requestViewList (partID) {
+  var resultValue;
   $.ajax({
     url: serverAddress + "/viewList",
     type: "POST",
@@ -34,16 +34,18 @@ function requestViewList (partID) {
     timeout: 5000,
     async: false,
     success: function (result) {
-      return result;
+      resultValue = result;
     },
     error: function () {
       alert('获取零件测点列表失败,服务器是否在线?\n' + serverAddress);
-      return [];
+      resultValue = [];
     }
   })
+  return resultValue;
 }
 
 function requestDataDiagram (pointID) {
+  var resultValue;
   $.ajax({
     url: serverAddress + "/dataDiagram",
     type: "POST",
@@ -53,15 +55,17 @@ function requestDataDiagram (pointID) {
     timeout: 10000,
     async: false,
     success: function (result) {
-      return result;
+      resultValue = result;
     },
     error: function () {
-      return [];
+      resultValue = [];
     }
   })
+  return resultValue;
 }
 
 function requestDataList () {
+  var resultValue;
   $.ajax({
     url: serverAddress + "/dataList",
     type: "POST",
@@ -71,26 +75,12 @@ function requestDataList () {
     timeout: 5000,
     async: false,
     success: function (result) {
-      return result;
+      resultValue = result;
     },
     error: function () {
       alert('获取测点列表失败,服务器是否在线?\n' + serverAddress);
-      return [];
+      resultValue = [];
     }
   })
-}
-
-function requestFile () {
-  $.ajax({
-    url: 'https://files.catbox.moe/43nl93.obj',
-    type: "GET",
-    timeout: 10000,
-    async: false,
-    success: function (result) {
-      return result;
-    },
-    error: function (result) {
-      return '0';
-    }
-  })
+  return resultValue;
 }

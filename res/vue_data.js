@@ -1,6 +1,7 @@
 function addScript () {
   var url = [
-    'data_request.js'
+    'data_request.js',
+    'https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js'
   ]
   for (var i in url) {
     document.write("<script language=javascript src=" + url[i] + "></script>");
@@ -41,10 +42,14 @@ app_data = new Vue({
     ifShowChart: false,
     ifShowData: false,
     popHeight: 500,
-    all_data_arr: [{ system: '', type: '', id: '', name: '' }]
+    all_data_arr: [{ system: 'a', type: 'a', id: 'a', name: 'a' },
+    { system: 'a', type: 'a', id: 'a', name: 'a' },
+    { system: 'a', type: 'a', id: 'a', name: 'a' }]
   },
   mounted () {
+    console.log(requestDataList());
     this.all_data_arr = requestDataList();
+    console.log(this.all_data_arr);
 
     if (sessionStorage.getItem('ifGo')) {
       setTimeout(function () {
