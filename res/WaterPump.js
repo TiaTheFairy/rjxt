@@ -1,3 +1,20 @@
+function addScript () {
+  var url = [
+    'data_request.js'
+  ]
+  for (var i in url) {
+    document.write("<script language=javascript src=" + url[i] + "></script>");
+  }
+}
+
+// var file = requestFile();
+var file = 'https://files.catbox.moe/43nl93.obj'
+// var file = './res/lib/lib2/WaterPump.obj'
+
+if (file === '0') {
+  alert('模型文件加载失败!');
+}
+
 var scene = new THREE.Scene();
 let ifChangeColor = 0;
 var tmpObj;
@@ -93,9 +110,9 @@ function fun1 (materials) {
       return;
     }
 
-    document.getElementById('loading').style.display = 'none';
+    document.getElementById('load').style.display = 'none';
   }
-  OBJLoader.load('./res/lib/lib2/WaterPump.obj', fun2);
+  OBJLoader.load(file, fun2);
 }
 MTLLoader.load('./res/lib/lib2/WaterPump.mtl', fun1);
 

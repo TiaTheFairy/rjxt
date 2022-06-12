@@ -25,7 +25,6 @@ request: '00'
 var serverAddress = 'http://119.91.146.51:8080';
 
 function requestViewList (partID) {
-  var resultValue;
   $.ajax({
     url: serverAddress + "/viewList",
     type: "POST",
@@ -35,18 +34,16 @@ function requestViewList (partID) {
     timeout: 5000,
     async: false,
     success: function (result) {
-      resultValue = result;
+      return result;
     },
     error: function () {
       alert('获取零件测点列表失败,服务器是否在线?\n' + serverAddress);
-      resultValue = [];
+      return [];
     }
   })
-  return resultValue;
 }
 
 function requestDataDiagram (pointID) {
-  var resultValue;
   $.ajax({
     url: serverAddress + "/dataDiagram",
     type: "POST",
@@ -56,17 +53,15 @@ function requestDataDiagram (pointID) {
     timeout: 10000,
     async: false,
     success: function (result) {
-      resultValue = result;
+      return result;
     },
     error: function () {
-      resultValue = [];
+      return [];
     }
   })
-  return resultValue;
 }
 
 function requestDataList () {
-  var resultValue;
   $.ajax({
     url: serverAddress + "/dataList",
     type: "POST",
@@ -76,12 +71,26 @@ function requestDataList () {
     timeout: 5000,
     async: false,
     success: function (result) {
-      resultValue = result;
+      return result;
     },
     error: function () {
       alert('获取测点列表失败,服务器是否在线?\n' + serverAddress);
-      resultValue = [];
+      return [];
     }
   })
-  return resultValue;
+}
+
+function requestFile () {
+  $.ajax({
+    url: 'https://files.catbox.moe/43nl93.obj',
+    type: "GET",
+    timeout: 10000,
+    async: false,
+    success: function (result) {
+      return result;
+    },
+    error: function (result) {
+      return '0';
+    }
+  })
 }
