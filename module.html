@@ -6,13 +6,18 @@
   <title>MODULE</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="./res/lib/lib2/OBJLoader.js"></script>
   <script src="./res/lib/lib2/MTLLoader.js"></script>
   <script src="./res/lib/lib2/controls/OrbitControls.js"></script>
+  <script type="text/javascript" src="./res/data_request.js"></script>
 </head>
 
 <body>
-  <img id='loading' src="./res/images/load.gif" width="1200px" style="display: block; margin: 0 auto;">
+  <div id="load" style="margin-top: 200px; margin-bottom: 1000px; text-align: center">
+    <img src="./res/images/loading.gif" width="50px">
+    <div style="margin-top: 50px; font-size: 30px;">正在加载模型,这可能需要消耗约30秒...</div>
+  </div>
   <script src="./res/WaterPump.js"></script>
 </body>
 
