@@ -241,3 +241,29 @@
   font-size: 30px;
   color: rgb(252, 6, 6);
 }
+
+#load {
+  margin-top: 200px;
+  margin-bottom: 1000px;
+  text-align: center;
+}
+
+#load .outterLoadbar {
+  width: 300px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 100px;
+  margin-inline: auto;
+}
+
+#load .outterLoadbar .innerLoadbar {
+  height: 20px;
+  background-color: green;
+  border-radius: 10px;
+}
+
+#load .tip {
+  margin-top: 50px;
+  font-size: 30px;
+}

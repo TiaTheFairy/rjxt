@@ -25,7 +25,7 @@ app_view = new Vue({
     view_right_head_name: '被测参数名称',
     view_right_head_next: '操作',
     view_right_detail: '详情',
-    view_right_empty: '当前零件没有可用的测点或数据服务器离线',
+    view_right_empty: '当前零件没有可用的测点',
 
     alert_onLoad: '本网页基于Chrome浏览器开发和测试, 如果遇到问题: \n请尝试使用Chrome并最大化或全屏窗口 \n谢谢!',
     alert_failJS: '执行JavaScript时出错了! 请反馈JS函数名称: ',

@@ -37,7 +37,7 @@ function requestViewList (partID) {
       resultValue = result;
     },
     error: function () {
-      alert('获取零件测点列表失败,服务器是否在线?\n' + serverAddress);
+      alert('获取零件测点列表失败,请再试一次\n' + serverAddress);
       resultValue = [];
     }
   })
@@ -78,7 +78,7 @@ function requestDataList () {
       resultValue = result;
     },
     error: function () {
-      alert('获取测点列表失败,服务器是否在线?\n' + serverAddress);
+      alert('获取测点列表失败,请再试一次\n' + serverAddress);
       resultValue = [];
     }
   })

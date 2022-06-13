@@ -2,10 +2,10 @@ document.addEventListener('contextmenu', function (e) {
   e.preventDefault();
 })
 
-// console.log(window.location.href);
-// if (/view.html$/.test(window.location.href)) {
-//   sessionStorage.clear();
-// }
+console.log(window.location.href);
+if (/^https/.test(window.location.href)) {
+  window.location.href = window.location.href.replace('https', 'http');
+}
 
 function changetab (string) {
   switch (string) {

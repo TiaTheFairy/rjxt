@@ -30,7 +30,7 @@ app_data = new Vue({
     data_table_name: '参数名称',
     data_table_next: '操作',
     data_table_view: '数据可视化',
-    data_table_empty: '该测点没有数据记录或数据服务器离线',
+    data_table_empty: '该测点没有数据记录',
     data_table_index: 0,
     data_table_refresh: '在浏览图表时调整了浏览器尺寸, 请重新打开图表',
 
@@ -47,9 +47,7 @@ app_data = new Vue({
     { system: 'a', type: 'a', id: 'a', name: 'a' }]
   },
   mounted () {
-    console.log(requestDataList());
     this.all_data_arr = requestDataList();
-    console.log(this.all_data_arr);
 
     if (sessionStorage.getItem('ifGo')) {
       setTimeout(function () {
