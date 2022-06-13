@@ -2,7 +2,6 @@ document.addEventListener('contextmenu', function (e) {
   e.preventDefault();
 })
 
-console.log(window.location.href);
 if (/^https/.test(window.location.href)) {
   window.location.href = window.location.href.replace('https', 'http');
 }
