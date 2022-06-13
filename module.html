@@ -5,6 +5,7 @@
   <meta http-equiv="Content_Language" content="zh_CN">
   <title>MODULE</title>
 
+  <link rel="stylesheet" type="text/css" href="./res/mainstyle.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="./res/lib/lib2/OBJLoader.js"></script>
@@ -14,10 +15,17 @@
 </head>
 
 <body>
-  <div id="load" style="margin-top: 200px; margin-bottom: 1000px; text-align: center">
+  <div id="load">
     <img src="./res/images/loading.gif" width="50px">
-    <div style="margin-top: 50px; font-size: 30px;">正在加载模型...<br>
-      取决于网络状态, 这可能需要消耗约1-2分钟...</div>
+    <div class="outterLoadbar">
+      <div class="innerLoadbar"></div>
+    </div>
+    <div class="tip">
+      <div id="now">
+        正在下载模型... <br>
+        若长时间没有响应, 请刷新重试</div>
+      <div id="progress"> </div>
+    </div>
   </div>
   <script src="./res/WaterPump.js"></script>
 </body>
