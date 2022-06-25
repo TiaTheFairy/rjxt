@@ -12,6 +12,7 @@
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" src="./res/data_request.js"></script>
   <script type="text/javascript" src="./res/mainjs.js"></script>
+  <script type="text/javascript" src="./res/server.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="./res/lib/lib2/OBJLoader.js"></script>
@@ -24,13 +25,16 @@
 
     <div class="tab_selector">
       <div class="tab_selector_selected" onclick="changetab('view')">
-        {{web_selector_view}}
+        {{ web_selector_view }}
       </div>
       <div class="tab_selector_unselected" onclick="changetab('data')">
-        {{web_selector_data}}
+        {{ web_selector_data }}
+      </div>
+      <div class="tab_selector_clearCache" @click="clearCache()" v-show="ifShowClearCache">
+        {{ web_selector_clearCache }}
       </div>
       <div class="tab_selector_resize" onclick="resizeWindow()">
-        {{web_selector_resize}}
+        {{ web_selector_resize }}
       </div>
     </div>
 
