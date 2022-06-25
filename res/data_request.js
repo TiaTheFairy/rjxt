@@ -1,6 +1,7 @@
 function addScript () {
   var url = [
-    'https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js']
+    'https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js',
+    'server.js']
   for (var i in url) {
     document.write("<script src=" + url[i] + "></script>");
   }
@@ -20,13 +21,10 @@ request: '00'
 [{system:'系统', type:'参数类型', id:'参数ID', name:'参数名称'}...]
 */
 
-// var serverAddress = 'http://192.168.0.1:5000';
-var serverAddress = 'http://119.91.146.51:8080';
-
 function requestViewList (partID) {
   var resultValue;
   $.ajax({
-    url: serverAddress + "/viewList",
+    url: portViewList,
     type: "POST",
     data: JSON.stringify({ "id": partID }),
     contentType: "application/json;charset=UTF-8",
@@ -37,7 +35,7 @@ function requestViewList (partID) {
       resultValue = result;
     },
     error: function () {
-      alert('获取零件测点列表失败,请再试一次\n' + serverAddress);
+      alert('获取零件测点列表失败,请刷新再试一次\n' + serverAddress);
       resultValue = [];
     }
   })
@@ -47,7 +45,7 @@ function requestViewList (partID) {
 function requestDataDiagram (pointID) {
   var resultValue;
   $.ajax({
-    url: serverAddress + "/dataDiagram",
+    url: portDataDiagram,
     type: "POST",
     data: JSON.stringify({ "id": pointID }),
     contentType: "application/json;charset=UTF-8",
@@ -67,7 +65,7 @@ function requestDataDiagram (pointID) {
 function requestDataList () {
   var resultValue;
   $.ajax({
-    url: serverAddress + "/dataList",
+    url: portDataList,
     type: "POST",
     data: JSON.stringify({ 'request': '00' }),
     contentType: "application/json;charset=UTF-8",
@@ -78,7 +76,7 @@ function requestDataList () {
       resultValue = result;
     },
     error: function () {
-      alert('获取测点列表失败,请再试一次\n' + serverAddress);
+      alert('获取测点列表失败,请刷新再试一次\n' + serverAddress);
       resultValue = [];
     }
   })

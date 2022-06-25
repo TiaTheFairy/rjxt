@@ -1,6 +1,7 @@
 function addScript () {
   var url = [
-    'data_request.js'
+    'data_request.js',
+    'server.js'
   ]
   for (var i in url) {
     document.write("<script language=javascript src=" + url[i] + "></script>");
@@ -22,33 +23,102 @@ var colors = [0x696969, 0x696969, 0x696969, 0x696969, 0x696969, 0x696969, 0x6969
 var OBJLoader = new THREE.OBJLoader();
 var MTLLoader = new THREE.MTLLoader();
 
-var addProgressForXhr = (fn) => {
-  var xhr = $.ajaxSettings.xhr()
-  if (typeof fn == "function") {
-    xhr.onprogress = fn;
+if (localStorage.getItem('ifSaved') && window.indexedDB) {
+  document.getElementById('now').innerHTML = '正在从浏览器缓存中载入模型<br>稍后会出现蓝色背景, 请耐心等待';
+
+  var request = window.indexedDB.open("moduleDB", 1);
+  var db;
+
+  request.onsuccess = function (event) {
+    db = request.result;
+
+    var objectStore = db
+      .transaction("module")
+      .objectStore("module");
+
+    objectStore.openCursor().onsuccess = function (e) {
+      var item = e.target.result;
+      if (item) {
+        file = new File([item.value.content], 'WaterPump.obj');
+        fileURL = window.URL.createObjectURL(file);
+        fun0();
+      }
+      else {
+        console.log("Failed to reach database.");
+        localStorage.clear();
+        this.location = location;
+      }
+    }
   }
-  return () => xhr
+
+  request.onerror = function (e) {
+    console.log("Failed to reach database");
+    localStorage.clear();
+    this.location = location;
+  }
+}
+else {
+  var addProgressForXhr = (fn) => {
+    var xhr = $.ajaxSettings.xhr()
+    if (typeof fn == "function") {
+      xhr.onprogress = fn;
+    }
+    return () => xhr
+  }
+
+  $.ajax({
+    url: moduelPath,
+    xhr: addProgressForXhr(function (e) {
+      var currentPercent = (e.loaded / e.total * 100).toFixed(0);
+      document.getElementById('progress').innerHTML = (e.loaded / 1048576).toFixed(0) + 'MB / ' + (e.total / 1048576).toFixed(0) + 'MB (' + currentPercent + '%)';
+      document.getElementsByClassName('innerLoadbar')[0].style.width = currentPercent * 3 + 'px';
+      if (currentPercent > 95) {
+        document.getElementById('now').innerHTML = '即将完成模型下载<br>模型下载后将开始载入模型, 届时会出现蓝色背景, 请耐心等待';
+      }
+    }),
+    async: true,
+    success: function (data, status, xhr) {
+      file = new File([data], 'WaterPump.obj');
+      fileURL = window.URL.createObjectURL(file);
+
+      fun0();
+
+      if (window.indexedDB) {
+        var request = window.indexedDB.open("moduleDB", 1);
+        var db;
+
+        request.onupgradeneeded = function (e) {
+          db = e.target.result;
+          var objectStore = db.createObjectStore("module", {
+            keyPath: "id"
+          });
+        }
+
+        request.onsuccess = function (e) {
+          db = request.result;
+          addRecord();
+        }
+
+        request.onerror = function (e) {
+          console.log("Failed to create database.");
+        }
+
+        function addRecord () {
+          var request = db.transaction(["module"], "readwrite")
+            .objectStore("module")
+            .add({ id: 1, content: data });
+          request.onsuccess = function (e) {
+            localStorage.setItem('ifSaved', true);
+          }
+          request.onerror = function (e) {
+            console.log("Failed to save module to local browser.");
+          }
+        }
+      }
+    }
+  })
 }
 
-$.ajax({
-  url: 'http://119.91.146.51:8080/WaterPump.obj',
-  // url: './res/lib/lib2/WaterPump.obj',
-  xhr: addProgressForXhr(function (e) {
-    var currentPercent = (e.loaded / e.total * 100).toFixed(0);
-    document.getElementById('progress').innerHTML = (e.loaded / 1048576).toFixed(0) + 'MB / ' + (e.total / 1048576).toFixed(0) + 'MB (' + currentPercent + '%)';
-    document.getElementsByClassName('innerLoadbar')[0].style.width = currentPercent * 3 + 'px';
-    if (currentPercent > 95) {
-      document.getElementById('now').innerHTML = '即将完成模型下载<br>模型下载后将开始载入模型, 届时会出现蓝色背景, 请耐心等待';
-    }
-  }),
-  async: true,
-  success: function (data, status, xhr) {
-    file = new File([data], 'WaterPump.obj');
-    fileURL = window.URL.createObjectURL(file);
-
-    fun0();
-  }
-})
 
 function fun0 () {
   if (ifChangeColor == 1) {

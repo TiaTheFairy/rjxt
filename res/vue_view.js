@@ -12,13 +12,14 @@ app_view = new Vue({
   data: {
     web_selector_view: '三维视图',
     web_selector_data: '数据视图',
+    web_selector_clearCache: '清空缓存',
     web_selector_resize: '若页面显示不正确, 请最大化窗口或全屏(点击此处切换全屏)',
 
-    parts: ['电机', '电机支架', '齿轮箱', '齿轮箱支架', '轴承', '基坑里衬', '叶轮', '下支撑环'],
-    parts_id: ['PRT0172_1090', 'PRT0161_1036', 'PRT0164_1028', 'PRT0026_159', 'PRT0039_230', 'PRT0043_234', 'PRT0149_912', 'PRT0103_683'],
+    parts: server_partName,
+    parts_id: server_partID,
 
-    view_color_rgb: ["rgb(0, 255, 255)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 0)", "rgb(255, 0, 255)", "rgb(255, 0, 0)"],
-    view_color_hex: [0x00ffff, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0xff0000],
+    view_color_rgb: server_colorInRGB,
+    view_color_hex: server_colorInHEX,
     view_tip: '点击按钮改变颜色, 右击按钮清除颜色, 点击三维零件打开测点列表',
     view_right_head_no: '序号',
     view_right_head_number: '测点位号',
@@ -36,10 +37,13 @@ app_view = new Vue({
     parts_data_arr: [{ number: '', name: '' }],
     partID_showing: '',
     partName_showing: '',
-    partPoint_exist: true
+    partPoint_exist: true,
+    ifShowClearCache: false,
   },
   mounted () {
-
+    if (localStorage.getItem('ifSaved')) {
+      this.ifShowClearCache = true;
+    }
   },
   methods: {
     clearPartsColor: function (index, e) {
@@ -103,6 +107,12 @@ app_view = new Vue({
       sessionStorage.setItem('ifGo', true);
       sessionStorage.setItem('item', this.parts_data_arr[index].number);
       window.location.href = "./data.html";
+    },
+    clearCache: function () {
+      window.indexedDB.deleteDatabase("moduleDB");
+      this.ifShowClearCache = false;
+      alert('数据缓存已成功删除');
+      localStorage.removeItem('ifSaved');
     }
   }
 })

@@ -1,3 +1,11 @@
+function addScript () {
+  var url = [
+    'server.js']
+  for (var i in url) {
+    document.write("<script src=" + url[i] + "></script>");
+  }
+}
+
 document.addEventListener('contextmenu', function (e) {
   e.preventDefault();
 })
