@@ -16,8 +16,8 @@ var tmpMaterial;
 var targetID = '';
 var targetColor = '';
 
-var parts_id = ['PRT0172_1090', 'PRT0161_1036', 'PRT0164_1028', 'PRT0026_159', 'PRT0039_230', 'PRT0043_234', 'PRT0149_912', 'PRT0103_683'];
-var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+var parts_id = server_partID;
+var letters = server_partLetter;
 var colors = [0x696969, 0x696969, 0x696969, 0x696969, 0x696969, 0x696969, 0x696969, 0x696969];
 
 var OBJLoader = new THREE.OBJLoader();
